@@ -71,7 +71,7 @@ const usuariosDelete = async (req, res = response) => {
     //~ Se recomienda utilizar este método para que no se elimine el registro de la BD
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
 
-    res.json(usuario);
+    res.json( usuario);
 };
 
 const usuariosPatch = (req, res = response) => {
