@@ -28,12 +28,16 @@
     <script src="https://accounts.google.com/gsi/client" async></script>
 
     <script>
+      const API_URL = window.location.hostname.includes("localhost")
+        ? "http://localhost:8080/api/auth/google"
+        : "https://curso-node-restserver-production-8c94.up.railway.app/api/auth/google";
+
       function handleCredentialResponse(response) {
         //~ Google token : ID_TOKEN
         // console.log('id_token', response.credential);
         const body = { id_token: response.credential };
 
-        fetch("https://curso-node-restserver-production-8c94.up.railway.app/api/auth/google", {
+        fetch(API_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
