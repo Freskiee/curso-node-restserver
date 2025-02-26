@@ -42,15 +42,29 @@ const existeCategoriaPorId = async (id = '') => {
 const existeProductoPorId = async (id = '') => {
     //! Verificar si el producto existe
     const existeProducto = await Producto.findById(id);
-    if ( !existeProducto ) {
+    if (!existeProducto) {
         throw new Error(`El producto con id: ${id}, NO existe.`);
     };
 };
 
+/**
+ * Validar colecciones permitidas
+ */
+const coleccionesPermitidas = (coleccion = '', colecciones = []) => {
+
+    const incluida = colecciones.includes(coleccion);
+    if (!incluida) {
+        throw new Error(`La coleccion ${coleccion} no es permitida - ${colecciones}`)
+    };
+    return true;
+
+};
+
 module.exports = {
+    coleccionesPermitidas,
     emailExiste,
     esRoleValido,
-    existeUsuarioPorId,
     existeCategoriaPorId,
     existeProductoPorId,
+    existeUsuarioPorId,
 };
